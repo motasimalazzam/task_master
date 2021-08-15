@@ -4,11 +4,11 @@
     <item
         android:id="@+id/allMenu"
         android:orderInCategory="100"
-        android:title="All Task"
+        android:title="All Tasks"
         app:showAsAction="never" />
     <item
-        android:id="@+id/setting"
+        android:id="@+id/Add_Task"
         android:orderInCategory="200"
-        android:title="Setting"
+        android:title="Add Task"
         app:showAsAction="never"/>
 </menu>
