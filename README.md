@@ -61,3 +61,31 @@ Task detail page appears when the user click on each task on the home page.
 ![Task2 detail page](screenshots/taskDetailActivity-2-lab-27.jpg)
 
 ![Task3 detail page](screenshots/taskDetailActivity-3-lab-27.jpg)
+
+## Lab: 29 - Room
+
+In this lab, I added a Room database to save the tasks and the details of tasks and get data from it, and let the recycler view take the data from the room database. 
+
+### Add Task Activity
+
+On this page, Added a new field in which can the user writes the state of the task.
+
+![state of task](screenshots/addTaskActivity-lab-29.jpg)
+
+Also added a spinner in which the user can select one of the choices for the image of the task.
+
+![spinner](screenshots/spinner-lab-29.jpg)
+
+### Main Activity
+
+ This is the home page and it conains tasks and each task has an image depends on the user choise from the spinner.
+
+![home page1](screenshots/homepage-lab-29.jpg)
+
+![home page2](screenshots/homepage2-lab-29.jpg)
+
+### All Task Activity
+
+Refactored this page to show all user tasks.
+
+![all tasks](screenshots/allTaskActicity-lab-29.jpg) 
