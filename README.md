@@ -92,7 +92,7 @@ Also added a spinner in which the user can select one of the choices for the ima
 
 ### Main Activity
 
- This is the home page and it conains tasks and each task has an image depends on the user choise from the spinner.
+This is the home page and it contains tasks and each task has an image depends on the user's choice from the spinner. Also, the user can delete the task by click on the delete.
 
 ![home page1](screenshots/homepage-lab-29.jpg)
 
