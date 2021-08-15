@@ -11,4 +11,9 @@
         android:orderInCategory="200"
         android:title="Add Task"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="200"
+        android:title="Settings"
+        app:showAsAction="never"/>
 </menu>
