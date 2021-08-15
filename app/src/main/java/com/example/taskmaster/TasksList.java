@@ -3,9 +3,11 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +19,13 @@ public class TasksList extends AppCompatActivity {
     public static final String TASK_STATE = "task_state";
     private List<Task> tasksList;
     private TaskAdapter adapter;
-
+    private TaskDao taskDao;
+    private TaskDataBase db;
     public List<Task> getTasksList() {
+
         return tasksList;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +34,23 @@ public class TasksList extends AppCompatActivity {
         RecyclerView TaskRecyclerView = findViewById(R.id.list_item);
 
 
-        Task task1 = new Task("Task 1", "Review German language", "in progress");
-        Task task2 = new Task("Task 2", "Review React js", "assigned");
-        Task task3 = new Task("Task 3", "edit on LinkedIn", "complete");
-        Task task4 = new Task("Task 4", "learned a new programing language", "new");
+//        Task task1 = new Task("Task 1", "Review German language", "in progress");
+//        Task task2 = new Task("Task 2", "Review React js", "assigned");
+//        Task task3 = new Task("Task 3", "edit on LinkedIn", "complete");
+//        Task task4 = new Task("Task 4", "learned a new programing language", "new");
+//
+//
+//        tasksList = new ArrayList<>();
+//        tasksList.add(task1);
+//        tasksList.add(task2);
+//        tasksList.add(task3);
+//        tasksList.add(task4);
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                TaskDataBase.class, AddTaskActivity.TASK_ITEM).allowMainThreadQueries().build();
 
-        tasksList = new ArrayList<>();
-        tasksList.add(task1);
-        tasksList.add(task2);
-        tasksList.add(task3);
-        tasksList.add(task4);
+        taskDao = db.taskDao();
+        tasksList = taskDao.findAll();
 
         adapter = new TaskAdapter(tasksList, new TaskAdapter.OnTaskItemClickListener() {
             @Override
@@ -51,6 +62,13 @@ public class TasksList extends AppCompatActivity {
                 startActivity(goToDetailsIntent);
 
             }
+            @Override
+            public void onDeleteItem(int position) {
+                taskDao.delete(tasksList.get(position));
+                tasksList.remove(position);
+                notifyDatasetChanged();
+                Toast.makeText(TasksList.this, "Item deleted", Toast.LENGTH_SHORT).show();
+            }
 
 
         });
@@ -61,5 +79,8 @@ public class TasksList extends AppCompatActivity {
 
         TaskRecyclerView.setLayoutManager(linearLayoutManager);
         TaskRecyclerView.setAdapter(adapter);
+    }
+    private void notifyDatasetChanged() {
+        adapter.notifyDataSetChanged();
     }
 }
