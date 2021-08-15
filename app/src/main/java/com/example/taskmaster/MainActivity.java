@@ -3,6 +3,7 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String TASK_STATE = "task_state";
     private List<Task> tasksList;
     private TaskAdapter adapter;
+    private TaskDao taskDao;
+    private TaskDataBase db;
 
     public List<Task> getTasksList() {
         return tasksList;
@@ -38,17 +40,23 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView TaskRecyclerView = findViewById(R.id.list);
 
 
-        Task task1 = new Task("Task 1", "Review German language", "in progress");
-        Task task2 = new Task("Task 2", "Review React js", "assigned");
-        Task task3 = new Task("Task 3", "edit on LinkedIn", "complete");
-        Task task4 = new Task("Task 4", "learned a new programing language", "new");
+//        Task task1 = new Task("Task 1", "Review German language", "in progress");
+//        Task task2 = new Task("Task 2", "Review React js", "assigned");
+//        Task task3 = new Task("Task 3", "edit on LinkedIn", "complete");
+//        Task task4 = new Task("Task 4", "learned a new programing language", "new");
+//
+//
+//        tasksList = new ArrayList<>();
+//        tasksList.add(task1);
+//        tasksList.add(task2);
+//        tasksList.add(task3);
+//        tasksList.add(task4);
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                TaskDataBase.class, AddTaskActivity.TASK_ITEM).allowMainThreadQueries().build();
 
-        tasksList = new ArrayList<>();
-        tasksList.add(task1);
-        tasksList.add(task2);
-        tasksList.add(task3);
-        tasksList.add(task4);
+        taskDao = db.taskDao();
+        tasksList = taskDao.findAll();
 
         adapter = new TaskAdapter(tasksList, new TaskAdapter.OnTaskItemClickListener() {
             @Override
@@ -59,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 goToDetailsIntent.putExtra(TASK_STATE, tasksList.get(position).getState());
                 startActivity(goToDetailsIntent);
 
+            }
+
+            @Override
+            public void onDeleteItem(int position) {
+                taskDao.delete(tasksList.get(position));
+                tasksList.remove(position);
+                notifyDatasetChanged();
+                Toast.makeText(MainActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -84,10 +100,14 @@ public class MainActivity extends AppCompatActivity {
         showAllTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent showAllTasks=new Intent(MainActivity.this,AllTasksActivity.class);
+                Intent showAllTasks=new Intent(MainActivity.this,TasksList.class);
                 startActivity(showAllTasks);
             }
         });
+
+    }
+    private void notifyDatasetChanged() {
+        adapter.notifyDataSetChanged();
     }
 
     public void getTask1(View view) {
@@ -130,12 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.Add_Task) {
             Intent addTaskPage=new Intent(MainActivity.this,AddTaskActivity.class);
             startActivity(addTaskPage);

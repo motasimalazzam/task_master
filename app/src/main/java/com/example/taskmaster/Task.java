@@ -1,10 +1,22 @@
 package com.example.taskmaster;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Task {
 
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @ColumnInfo(name = "taskImage")
     private  int image;
+    @ColumnInfo(name = "taskTitle")
     private final String title;
+    @ColumnInfo(name = "taskBody")
     private final String body;
+    @ColumnInfo(name = "taskSate")
     private final String state ;
 
 
@@ -32,5 +44,13 @@ public class Task {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

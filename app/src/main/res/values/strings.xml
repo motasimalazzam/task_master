@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">taskmaster</string>
+    <string-array name="tasks">
+        <item>In Progress</item>
+        <item>New Task</item>
+        <item>Done</item>
+    </string-array>
 </resources>
