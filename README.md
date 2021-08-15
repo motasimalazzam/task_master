@@ -61,3 +61,17 @@ Task detail page appears when the user click on each task on the home page.
 ![Task2 detail page](screenshots/taskDetailActivity-2-lab-27.jpg)
 
 ![Task3 detail page](screenshots/taskDetailActivity-3-lab-27.jpg)
+
+## Lab: 28 - RecyclerView
+
+In this lab I used the `RecyclerView` to view all tasks in the home page as the list. 
+
+### Main Activity
+
+I refactored the homepage to show all the tasks as the list and the user can scroll down or up to view the tasks.
+
+![RecyclerView list](screenshots/recyclerview-mainActivity-lab-28.jpg)
+
+And also when the user clicks on any task, it will move him/her to the task details page.
+
+![details page](screenshots/recyclerview-lab-28.jpg)
