@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +16,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button addTaskButton =findViewById(R.id.button);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addTaskPage=new Intent(MainActivity.this,AddTaskActivity.class);
+                startActivity(addTaskPage);
+            }
+        });
+
+        Button showAllTasks= findViewById(R.id.button3);
+        showAllTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showAllTasks=new Intent(MainActivity.this,AllTasksActivity.class);
+                startActivity(showAllTasks);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,8 +50,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.Add_Task) {
+            Intent addTaskPage=new Intent(MainActivity.this,AddTaskActivity.class);
+            startActivity(addTaskPage);
+            return true;
+        }
+
         if (id == R.id.allMenu) {
-            Toast.makeText(this, "Item added", Toast.LENGTH_SHORT).show();
+            Intent allTaskPage=new Intent(MainActivity.this,AllTasksActivity.class);
+            startActivity(allTaskPage);
             return true;
         }
         
