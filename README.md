@@ -104,3 +104,26 @@ Refactored this page to show all user tasks.
 
 ![all tasks](screenshots/allTaskActicity-lab-29.jpg) 
 
+## Lab 31: Espresso and Polish
+
+* In This lab I tets the code by using Espresso test.
+
+* I created 4 test:
+
+1. `testAddTask()`
+
+To test the important UI elements are displayed on the Add Task page.
+
+2. `assertTextChanged()`
+
+To test if you edit the user’s username, and then assert that it says the correct thing on the homepage.
+
+3. `testOpenTaskDetail()`
+
+To test when you tap on a task, and then assert that the resulting activity displays the title, body and state of that task in task detail page.
+
+4. `addTaskAndCheckItInTheList()`
+
+To test if you can add a new task then when you tap on this task, and assert that the resulting activity displays the title, body and state of that task in task detail page. 
+
+![EsspressoTest](screenshots/EspressoTest-lab-31.png)
