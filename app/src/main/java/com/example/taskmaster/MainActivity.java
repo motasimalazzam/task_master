@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         TextView address = findViewById(R.id.textView);
+
         address.setText(preferences.getString("name", "") + "'s Task");
     }
     @Override

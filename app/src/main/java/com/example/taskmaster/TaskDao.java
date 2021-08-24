@@ -9,7 +9,6 @@ import java.util.List;
 
 @Dao
 public interface TaskDao {
-
     @Insert
     void insertOne(Task task);
 
@@ -20,5 +19,6 @@ public interface TaskDao {
     List<Task> findAll();
 
     @Delete
-    void delete(Task task);
+    void delete(Task tasks);
+
 }
