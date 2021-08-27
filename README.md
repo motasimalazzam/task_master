@@ -127,3 +127,29 @@ To test when you tap on a task, and then assert that the resulting activity disp
 To test if you can add a new task then when you tap on this task, and assert that the resulting activity displays the title, body and state of that task in task detail page. 
 
 ![EsspressoTest](screenshots/EspressoTest-lab-31.png)
+
+## Lab 32: Amplify and DynamoDB
+
+In this lab I implemented **AWS amplify** to access the data in **DynamoDB** insted of **Room**.
+
+### Add Task Activity
+
+Now when the user add new task in the add task page, The task will stor in the **DynamoDb** data base and also in the room to reach it if the user offline.
+
+### Main Activity
+
+I refactored the homepage's **RecyclerView** to display all Task entities in **DynamoDB**.
+
+![tasks In Homepage](screenshots/mainActivity-lab-32.jpg)
+
+![tasks In Homepage](screenshots/mainActivity2-lab-32.jpg)
+
+* This is screenshot for the tasks in the **DynamoDb**
+
+![tasks in DynamoDB](screenshots/TasksInDynamoDB-lab-32.png)
+
+### All Task Activity
+
+On the all task page the user can check the tasks when he/she is offline Because on this page I used the room to display the tasks.
+
+![tasks in room](screenshots/allTaskActivity-lab-32.jpg)

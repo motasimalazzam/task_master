@@ -113,11 +113,11 @@ public class AddTaskActivity extends AppCompatActivity {
                 taskDao.insertOne(task);
 //                Toast.makeText(AddTaskActivity.this, "Item added", Toast.LENGTH_SHORT).show();
 
-//                Intent mainIntent = new Intent(AddTaskActivity.this, MainActivity.class);
-//                startActivity(mainIntent);
+                Intent mainIntent = new Intent(AddTaskActivity.this, MainActivity.class);
+                startActivity(mainIntent);
 
-                Intent addTaskPage = new Intent(AddTaskActivity.this, TasksList.class);
-                startActivity(addTaskPage);
+//                Intent addTaskPage = new Intent(AddTaskActivity.this, TasksList.class);
+//                startActivity(addTaskPage);
             }
         });
     }
