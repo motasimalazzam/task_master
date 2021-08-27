@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
-    private final List<Task> taskItems;
+    private final List<Task> taskItemLists;
     private OnTaskItemClickListener listener;
 
 
-    public TaskAdapter(List<Task> taskMasterItem, OnTaskItemClickListener listener) {
-        this.taskItems = taskMasterItem;
+    public TaskAdapter(List<Task> taskItemLists, OnTaskItemClickListener listener) {
+        this.taskItemLists = taskItemLists;
         this.listener = listener;
     }
 
@@ -35,7 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Task item = taskItems.get(position);
+        Task item = taskItemLists.get(position);
         holder.title.setText(item.getTitle());
         holder.body.setText(item.getBody());
         holder.state.setText(item.getState());
@@ -46,7 +46,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return taskItems.size();
+        return taskItemLists.size();
 
     }
 

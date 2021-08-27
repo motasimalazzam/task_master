@@ -3,7 +3,9 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
 
 import java.util.HashMap;
 
@@ -85,14 +90,50 @@ public class AddTaskActivity extends AppCompatActivity {
                 String body = inputBody.getText().toString();
                 String state = inputState.getText().toString();
 
+//                create Task Item
+
+                com.amplifyframework.datastore.generated.model.Task taskItem = com.amplifyframework.datastore.generated.model.Task.builder()
+                        .title(title)
+                        .description(body)
+                        .status(state)
+                        .build();
+
+                if(isNetworkAvailable(getApplicationContext())){
+                    Log.i(TAG, "onClick: the network is available");
+                }else{
+                    Log.i(TAG, "onClick: net down");
+                }
+
+                saveTaskToAPI(taskItem);
+                TaskDataManger.getInstance().getData().add(new Task(taskItem.getTitle() , taskItem.getDescription(),taskItem.getStatus()));
+                Toast.makeText(AddTaskActivity.this, "Task saved", Toast.LENGTH_SHORT).show();
+
                 Task task = new Task(title, body, state);
                 task.setImage(taskItemImage);
                 taskDao.insertOne(task);
-                Toast.makeText(AddTaskActivity.this, "Item added", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AddTaskActivity.this, "Item added", Toast.LENGTH_SHORT).show();
 
                 Intent mainIntent = new Intent(AddTaskActivity.this, MainActivity.class);
                 startActivity(mainIntent);
+
+//                Intent addTaskPage = new Intent(AddTaskActivity.this, TasksList.class);
+//                startActivity(addTaskPage);
             }
         });
+    }
+
+    public com.amplifyframework.datastore.generated.model.Task saveTaskToAPI(com.amplifyframework.datastore.generated.model.Task taskItem) {
+        Amplify.API.mutate(ModelMutation.create(taskItem),
+                success -> Log.i(TAG, "Saved item: " + taskItem.getTitle()),
+                error -> Log.e(TAG, "Could not save item to API/dynamodb" + taskItem.getTitle()));
+        return taskItem;
+
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager =
+                ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager
+                .getActiveNetworkInfo().isConnected();
     }
 }
