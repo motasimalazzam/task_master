@@ -1,10 +1,40 @@
 # this is an auto generated file. This will be overwritten
+query SyncTasks(
+  $filter: ModelTaskFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncTasks(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      title
+      description
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
 query GetTask($id: ID!) {
   getTask(id: $id) {
     id
     title
     description
     status
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -20,32 +50,13 @@ query ListTasks(
       title
       description
       status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-  }
-}
-query GetNote($id: ID!) {
-  getNote(id: $id) {
-    id
-    content
-    createdAt
-    updatedAt
-  }
-}
-query ListNotes(
-  $filter: ModelNoteFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      content
-      createdAt
-      updatedAt
-    }
-    nextToken
+    startedAt
   }
 }
