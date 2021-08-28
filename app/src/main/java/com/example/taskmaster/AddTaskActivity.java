@@ -38,15 +38,6 @@ public class AddTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
         getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        Button addNewTask =findViewById(R.id.button2);
-//        addNewTask.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast buttonToast= Toast.makeText(AddTaskActivity.this,"submitted!",Toast.LENGTH_SHORT);
-//                buttonToast.show();
-//            }
-//        });
 
         imageIconDatabase.put("In Progress", R.drawable.ic_clipboard);
         imageIconDatabase.put("New Task", R.drawable.ic_resource_new);
@@ -111,13 +102,9 @@ public class AddTaskActivity extends AppCompatActivity {
                 Task task = new Task(title, body, state);
                 task.setImage(taskItemImage);
                 taskDao.insertOne(task);
-//                Toast.makeText(AddTaskActivity.this, "Item added", Toast.LENGTH_SHORT).show();
-
                 Intent mainIntent = new Intent(AddTaskActivity.this, MainActivity.class);
                 startActivity(mainIntent);
 
-//                Intent addTaskPage = new Intent(AddTaskActivity.this, TasksList.class);
-//                startActivity(addTaskPage);
             }
         });
     }
