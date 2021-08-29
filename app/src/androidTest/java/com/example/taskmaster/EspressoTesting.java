@@ -33,7 +33,7 @@ public class EspressoTesting {
         onView(withId(R.id.button7)).perform(click());
         onView(withId(R.id.editTextTextPersonName3)).perform(typeText("Azzam"), closeSoftKeyboard());
         onView(withId(R.id.button8)).perform(click());
-        onView(withId(R.id.textView)).check(matches(withText("Azzam's Task")));
+        onView(withId(R.id.textView)).check(matches(withText("Azzam's Tasks")));
     }
 
     @Test
