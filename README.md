@@ -153,3 +153,33 @@ I refactored the homepage's **RecyclerView** to display all Task entities in **D
 On the all task page the user can check the tasks when he/she is offline Because on this page I used the room to display the tasks.
 
 ![tasks in room](screenshots/allTaskActivity-lab-32.jpg)
+
+## Lab 33: Related Data
+
+### Add Task Activity
+
+Modify the Add Task form to include either a Spinner for which team that task belongs to.
+
+![Add Task Page](screenshots/addTaskActivity-lab-33.jpg)
+
+### Setting Activity
+
+In addition to a username, allow the user to choose their team on the Settings page. Use that Team to display only that team’s tasks on the homepage.
+
+![settings page](screenshots/settingsActivity-lab-33.jpg)
+
+### ### Main Activity
+
+When the user chooses the team, the tasks will display on the home page, and at the top of the page, the team name will display.
+
+![201 tasks](screenshots/mainActivity201-lab-33.jpg)
+
+![301 tasks](screenshots/mainActivity301-lab-33.jpg)
+
+![401 tasks](screenshots/mainActivity401-lab-33.jpg)
+
+* Picturs below for **DynamoDB**:
+
+![teams Tabl](screenshots/TeamsTable-lab-33.png)
+
+![Tasks Table](screenshots/TasksTable-lab-33.png)
