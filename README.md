@@ -168,7 +168,7 @@ In addition to a username, allow the user to choose their team on the Settings p
 
 ![settings page](screenshots/settingsActivity-lab-33.jpg)
 
-### ### Main Activity
+###  Main Activity
 
 When the user chooses the team, the tasks will display on the home page, and at the top of the page, the team name will display.
 
@@ -178,8 +178,18 @@ When the user chooses the team, the tasks will display on the home page, and at 
 
 ![401 tasks](screenshots/mainActivity401-lab-33.jpg)
 
-* Picturs below for **DynamoDB**:
+* Pictures below for **DynamoDB**:
 
 ![teams Tabl](screenshots/TeamsTable-lab-33.png)
 
 ![Tasks Table](screenshots/TasksTable-lab-33.png)
+
+## Lab 34: Publishing to the Play Store
+
+This lab is about generate an **APK** for the application and publishing it to the Google Play Store.
+
+* [This is the APK](app/release)
+
+* Because the publishing process needs 25$ I did not complete it.
+
+![googlr play console](screenshots/Google-play-console-lab-34.png)
