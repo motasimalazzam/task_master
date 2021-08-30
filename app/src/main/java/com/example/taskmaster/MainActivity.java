@@ -38,19 +38,20 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler handler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        setTitle("Home Page");
+
 
         handler = new Handler(message -> {
             notifyDataSetChanged();
             return false;
         });
 
-        configureAmplify();
+//        configureAmplify();
 
 
         TaskDataBase database = Room.databaseBuilder(getApplicationContext(), TaskDataBase.class, "task_List")
@@ -99,10 +100,12 @@ public class MainActivity extends AppCompatActivity {
         String username = sharedPreferences.getString("userName", "");
         String teamName = sharedPreferences.getString("teamName", "");
 
+        CharSequence myUserTitle = sharedPreferences.getString("userNameAPI", "");
+        setTitle(myUserTitle + " Profile");
+
         if (!username.equals("")) {
             ((TextView) findViewById(R.id.textView)).setText(username + "'s Tasks");
         }
-
 
         tasks = new ArrayList<>();
         if (teamName.equals("")) {
@@ -143,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.setLayoutManager(linearLayoutManager);
         taskRecyclerView.setAdapter(adapter);
     }
+
 
     private void configureAmplify() {
         // configure Amplify plugins
@@ -238,6 +242,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent settingsPage=new Intent(MainActivity.this,Settings.class);
                 startActivity(settingsPage);
                 return true;
+            }
+
+            if(id == R.id.signout){
+                Amplify.Auth.signOut(
+                        () -> {
+                            Log.i("AuthQuickstart", "Signed out successfully");
+                            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                            startActivity(intent);
+                        },
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
             }
 
             return super.onOptionsItemSelected(item);
