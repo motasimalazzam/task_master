@@ -183,3 +183,37 @@ When the user chooses the team, the tasks will display on the home page, and at 
 ![teams Tabl](screenshots/TeamsTable-lab-33.png)
 
 ![Tasks Table](screenshots/TasksTable-lab-33.png)
+
+
+## Lab: 36 - Cognito
+
+### Sign Up page 
+
+we have this page to permit the user to make a new account.
+
+![signup](https://github.com/motasimalazzam/task_master/blob/lab-36/screenshots/lab36(2))
+
+
+### Verification Page
+
+after the user signup he/she will receved a verification code on his/her Email and in this page they should write that code.
+
+![ver](https://github.com/motasimalazzam/task_master/blob/lab-36/screenshots/lab36(4))
+
+### Signin Page
+
+On this page, after they have an account they can use this page to login into the application.
+
+![login](https://github.com/motasimalazzam/task_master/blob/lab-36/screenshots/lab36(3))
+
+### Main Page
+
+Every user can see his/her username in the nav bar in the Main Page.
+
+![main](https://github.com/motasimalazzam/task_master/blob/lab-36/screenshots/mainActivity-lab-36.jpg)
+
+### Cognito
+
+Here We can see every user thay have an account
+
+![Cognito](https://github.com/motasimalazzam/task_master/blob/lab-36/screenshots/lab36(1))
