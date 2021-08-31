@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +40,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.title.setText(item.getTitle());
         holder.body.setText(item.getBody());
         holder.state.setText(item.getState());
-        holder.image.setImageResource(item.getImage());
+//        holder.image.setImageResource(item.getImage());
 
 
     }

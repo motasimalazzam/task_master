@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,7 @@ public class TasksList extends AppCompatActivity {
                 goToDetailsIntent.putExtra("taskTitle", tasks.get(position).getTitle());
                 goToDetailsIntent.putExtra("taskBody", tasks.get(position).getBody());
                 goToDetailsIntent.putExtra("taskState", tasks.get(position).getState());
+                goToDetailsIntent.putExtra("taskFile", tasks.get(position).getFileName());
                 startActivity(goToDetailsIntent);
             }
 
@@ -114,7 +116,7 @@ public class TasksList extends AppCompatActivity {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
 
                         if ((task.getTeam().getTeamName()).equals(teamName)) {
-                            tasks.add(new Task(task.getTitle(), task.getBody(), task.getState()));
+                            tasks.add(task);
                             Log.i(TAG, "The Tasks From Cloud are: " + task.getTitle());
                             Log.i(TAG, "The Team From Cloud are: " + task.getTeam().getTeamName());
                         }
@@ -129,7 +131,7 @@ public class TasksList extends AppCompatActivity {
         Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
                 response -> {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
-                        tasks.add(new Task(task.getTitle(), task.getBody(), task.getState()));
+                        tasks.add(task);
                         Log.i(TAG, "The Tasks From Cloud are: " + task.getTitle());
                     }
                     handler.sendEmptyMessage(1);
