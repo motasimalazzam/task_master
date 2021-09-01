@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467911497742",
+    "project_id": "motasimproject",
+    "storage_bucket": "motasimproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467911497742:android:10c7e0076270ac67f9445f",
+        "android_client_info": {
+          "package_name": "com.example.taskmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467911497742-lleio53tedv7rj0tajhi98039emlbfd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2DMNtKeEej9U-3s2N7JaNj66dTqbuemg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467911497742-lleio53tedv7rj0tajhi98039emlbfd3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
